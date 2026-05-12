@@ -1,51 +1,44 @@
 from abc import ABC, abstractmethod
-import os
 import datetime
 import re
 
 
 # ============================================================
-# CONFIGURACIÓN DE CARPETAS Y ARCHIVOS DEL SISTEMA
+# CONFIGURACIÓN DE LOGS Y EXPORTACIONES EN LA RAÍZ DEL PROYECTO
 # ============================================================
 
-CARPETA_LOGS = "logs"
-CARPETA_EXPORTACIONES = "exportaciones"
-
-ARCHIVO_LOG = os.path.join(CARPETA_LOGS, "log_sistema.txt")
-ARCHIVO_EXPORTACION = os.path.join(CARPETA_EXPORTACIONES, "reservas_exportadas.txt")
-
-
-def crear_carpetas_sistema():
-    """
-    Crea las carpetas necesarias para guardar logs y exportaciones.
-    Si las carpetas ya existen, no genera error.
-    """
-    os.makedirs(CARPETA_LOGS, exist_ok=True)
-    os.makedirs(CARPETA_EXPORTACIONES, exist_ok=True)
+ARCHIVO_LOG = "log_sistema.txt"
+ARCHIVO_EXPORTACION = "reservas_exportadas.txt"
 
 
 def registrar_evento(mensaje):
     """
-    Registra eventos importantes del sistema en logs/log_sistema.txt.
+    Registra eventos importantes del sistema en log_sistema.txt.
+    El archivo se crea automáticamente en la raíz del proyecto.
     """
-    crear_carpetas_sistema()
+    try:
+        fecha_actual = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    fecha_actual = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        with open(ARCHIVO_LOG, "a", encoding="utf-8") as archivo:
+            archivo.write(f"[{fecha_actual}] EVENTO: {mensaje}\n")
 
-    with open(ARCHIVO_LOG, "a", encoding="utf-8") as archivo:
-        archivo.write(f"[{fecha_actual}] EVENTO: {mensaje}\n")
+    except Exception as error:
+        print(f"Error crítico al escribir en el log: {error}")
 
 
 def registrar_error(mensaje):
     """
-    Registra errores controlados o inesperados en logs/log_sistema.txt.
+    Registra errores controlados o inesperados en log_sistema.txt.
+    El archivo se crea automáticamente en la raíz del proyecto.
     """
-    crear_carpetas_sistema()
+    try:
+        fecha_actual = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    fecha_actual = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        with open(ARCHIVO_LOG, "a", encoding="utf-8") as archivo:
+            archivo.write(f"[{fecha_actual}] ERROR: {mensaje}\n")
 
-    with open(ARCHIVO_LOG, "a", encoding="utf-8") as archivo:
-        archivo.write(f"[{fecha_actual}] ERROR: {mensaje}\n")
+    except Exception as error:
+        print(f"Error crítico al escribir en el log: {error}")
 
 
 # ============================================================
@@ -466,30 +459,57 @@ class SistemaGestion:
 
     def exportar_reservas(self):
         """
-        Exporta el listado de reservas a exportaciones/reservas_exportadas.txt.
+        Exporta el listado de reservas a reservas_exportadas.txt.
+        El archivo se crea en la raíz del proyecto, al mismo nivel de main.py.
         """
-        crear_carpetas_sistema()
+        try:
+            with open(ARCHIVO_EXPORTACION, "w", encoding="utf-8") as archivo:
+                archivo.write("============================================================\n")
+                archivo.write("              RESERVAS EXPORTADAS - SOFTWARE FJ\n")
+                archivo.write("============================================================\n\n")
 
-        with open(ARCHIVO_EXPORTACION, "w", encoding="utf-8") as archivo:
-            archivo.write("============================================================\n")
-            archivo.write("              RESERVAS EXPORTADAS - SOFTWARE FJ\n")
-            archivo.write("============================================================\n\n")
+                if not self.reservas:
+                    archivo.write("No existen reservas registradas.\n")
+                else:
+                    for indice, reserva in enumerate(self.reservas, start=1):
+                        archivo.write(f"Reserva #{indice}\n")
+                        archivo.write(f"Cliente: {reserva.cliente.nombre}\n")
+                        archivo.write(f"Servicio: {reserva.servicio.nombre}\n")
+                        archivo.write(f"Duración: {reserva.duracion}\n")
+                        archivo.write(f"Estado: {reserva.estado}\n")
+                        archivo.write(f"Costo total: {reserva.costo_total}\n")
+                        archivo.write("-" * 60 + "\n")
 
-            if not self.reservas:
-                archivo.write("No existen reservas registradas.\n")
-            else:
-                for indice, reserva in enumerate(self.reservas, start=1):
-                    archivo.write(f"Reserva #{indice}\n")
-                    archivo.write(f"Cliente: {reserva.cliente.nombre}\n")
-                    archivo.write(f"Servicio: {reserva.servicio.nombre}\n")
-                    archivo.write(f"Duración: {reserva.duracion}\n")
-                    archivo.write(f"Estado: {reserva.estado}\n")
-                    archivo.write(f"Costo total: {reserva.costo_total}\n")
-                    archivo.write("-" * 60 + "\n")
+                    archivo.write("\nResumen general:\n")
 
-            archivo.write("\nFin del reporte de reservas.\n")
+                    total_procesadas = sum(
+                        1 for reserva in self.reservas
+                        if reserva.estado == "Procesada"
+                    )
 
-        registrar_evento(f"Reservas exportadas correctamente en {ARCHIVO_EXPORTACION}")
+                    total_canceladas = sum(
+                        1 for reserva in self.reservas
+                        if reserva.estado == "Cancelada"
+                    )
+
+                    total_pendientes = sum(
+                        1 for reserva in self.reservas
+                        if reserva.estado == "Pendiente"
+                    )
+
+                    archivo.write(f"Total reservas procesadas: {total_procesadas}\n")
+                    archivo.write(f"Total reservas canceladas: {total_canceladas}\n")
+                    archivo.write(f"Total reservas pendientes: {total_pendientes}\n")
+                    archivo.write(f"Total reservas registradas: {len(self.reservas)}\n")
+
+                archivo.write("\nFin del reporte de reservas.\n")
+
+            registrar_evento(f"Reservas exportadas correctamente en {ARCHIVO_EXPORTACION}")
+            return f"Archivo generado: {ARCHIVO_EXPORTACION}"
+
+        except Exception as error:
+            registrar_error(f"Error al exportar reservas: {error}")
+            raise
 
 
 # ============================================================
@@ -532,7 +552,6 @@ def ejecutar_operacion(numero, descripcion, funcion):
 # ============================================================
 
 def main():
-    crear_carpetas_sistema()
     registrar_evento("Inicio de ejecución del sistema Software FJ")
 
     print("==============================================")
@@ -653,8 +672,7 @@ def main():
         return "\n".join(sistema.listar_reservas())
 
     def op13():
-        sistema.exportar_reservas()
-        return f"Archivo generado: {ARCHIVO_EXPORTACION}"
+        return sistema.exportar_reservas()
 
     operaciones = [
         ("Registrar cliente válido", op1),
