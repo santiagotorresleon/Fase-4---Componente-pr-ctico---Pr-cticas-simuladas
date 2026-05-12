@@ -1,1 +1,50 @@
 
+[2026-05-12 01:53:24] EVENTO: Inicio de ejecución del sistema Software FJ
+[2026-05-12 01:53:24] EVENTO: Cliente registrado: Juan Perez
+[2026-05-12 01:53:24] EVENTO: Operación 1 ejecutada correctamente: Registrar cliente válido
+[2026-05-12 01:53:24] ERROR: Operación 2 fallida: El nombre del cliente no puede estar vacío.
+[2026-05-12 01:53:24] ERROR: Operación 3 fallida: El documento debe contener solo números.
+[2026-05-12 01:53:24] EVENTO: Cliente registrado: Laura Gomez
+[2026-05-12 01:53:24] EVENTO: Operación 4 ejecutada correctamente: Registrar segundo cliente válido
+[2026-05-12 01:53:24] EVENTO: Servicio registrado: Sala Ejecutiva
+[2026-05-12 01:53:24] EVENTO: Operación 5 ejecutada correctamente: Crear servicio de reserva de sala válido
+[2026-05-12 01:53:24] ERROR: Operación 6 fallida: El precio base debe ser mayor que cero.
+[2026-05-12 01:53:24] EVENTO: Servicio registrado: Alquiler de portatiles
+[2026-05-12 01:53:24] EVENTO: Operación 7 ejecutada correctamente: Crear servicio de alquiler de equipo
+[2026-05-12 01:53:24] EVENTO: Servicio registrado: Asesoria en Python
+[2026-05-12 01:53:24] EVENTO: Operación 8 ejecutada correctamente: Crear servicio de asesoría especializada
+[2026-05-12 01:53:24] EVENTO: Reserva creada para el cliente Juan Perez
+[2026-05-12 01:53:24] EVENTO: Reserva confirmada para el cliente Juan Perez
+[2026-05-12 01:53:24] EVENTO: Reserva procesada para el cliente Juan Perez
+[2026-05-12 01:53:24] EVENTO: Operación 9 ejecutada correctamente: Crear, confirmar y procesar reserva exitosa
+[2026-05-12 01:53:24] EVENTO: Reserva creada para el cliente Laura Gomez
+[2026-05-12 01:53:24] ERROR: Operación 10 fallida: No se puede confirmar la reserva porque el servicio no está disponible.
+[2026-05-12 01:53:24] ERROR: Operación 11 fallida: No se puede cancelar una reserva ya procesada.
+[2026-05-12 01:53:24] EVENTO: Operación 12 ejecutada correctamente: Listar reservas registradas
+[2026-05-12 01:53:24] EVENTO: Reservas exportadas correctamente en reservas_exportadas.txt
+[2026-05-12 01:53:24] EVENTO: Operación 13 ejecutada correctamente: Exportar reservas a archivo TXT
+[2026-05-12 01:53:24] EVENTO: Fin de ejecución del sistema Software FJ[2026-05-12 01:55:01] EVENTO: Inicio de ejecución del sistema Software FJ
+[2026-05-12 01:55:01] EVENTO: Cliente registrado: Juan Perez
+[2026-05-12 01:55:01] EVENTO: Operación 1 ejecutada correctamente: Registrar cliente válido
+[2026-05-12 01:55:01] ERROR: Operación 2 fallida: El nombre del cliente no puede estar vacío.
+[2026-05-12 01:55:01] ERROR: Operación 3 fallida: El documento debe contener solo números.
+[2026-05-12 01:55:01] EVENTO: Cliente registrado: Laura Gomez
+[2026-05-12 01:55:01] EVENTO: Operación 4 ejecutada correctamente: Registrar segundo cliente válido
+[2026-05-12 01:55:01] EVENTO: Servicio registrado: Sala Ejecutiva
+[2026-05-12 01:55:01] EVENTO: Operación 5 ejecutada correctamente: Crear servicio de reserva de sala válido
+[2026-05-12 01:55:01] ERROR: Operación 6 fallida: El precio base debe ser mayor que cero.
+[2026-05-12 01:55:01] EVENTO: Servicio registrado: Alquiler de portatiles
+[2026-05-12 01:55:01] EVENTO: Operación 7 ejecutada correctamente: Crear servicio de alquiler de equipo
+[2026-05-12 01:55:01] EVENTO: Servicio registrado: Asesoria en Python
+[2026-05-12 01:55:01] EVENTO: Operación 8 ejecutada correctamente: Crear servicio de asesoría especializada
+[2026-05-12 01:55:01] EVENTO: Reserva creada para el cliente Juan Perez
+[2026-05-12 01:55:01] EVENTO: Reserva confirmada para el cliente Juan Perez
+[2026-05-12 01:55:01] EVENTO: Reserva procesada para el cliente Juan Perez
+[2026-05-12 01:55:01] EVENTO: Operación 9 ejecutada correctamente: Crear, confirmar y procesar reserva exitosa
+[2026-05-12 01:55:01] EVENTO: Reserva creada para el cliente Laura Gomez
+[2026-05-12 01:55:01] ERROR: Operación 10 fallida: No se puede confirmar la reserva porque el servicio no está disponible.
+[2026-05-12 01:55:01] ERROR: Operación 11 fallida: No se puede cancelar una reserva ya procesada.
+[2026-05-12 01:55:01] EVENTO: Operación 12 ejecutada correctamente: Listar reservas registradas
+[2026-05-12 01:55:01] EVENTO: Reservas exportadas correctamente en reservas_exportadas.txt
+[2026-05-12 01:55:01] EVENTO: Operación 13 ejecutada correctamente: Exportar reservas a archivo TXT
+[2026-05-12 01:55:01] EVENTO: Fin de ejecución del sistema Software FJ

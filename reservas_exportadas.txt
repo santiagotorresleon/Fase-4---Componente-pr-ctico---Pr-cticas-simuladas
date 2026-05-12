@@ -1,0 +1,26 @@
+============================================================
+              RESERVAS EXPORTADAS - SOFTWARE FJ
+============================================================
+
+Reserva #1
+Cliente: Juan Perez
+Servicio: Sala Ejecutiva
+Duración: 2
+Estado: Procesada
+Costo total: 107100.0
+------------------------------------------------------------
+Reserva #2
+Cliente: Laura Gomez
+Servicio: Sala Ejecutiva
+Duración: 3
+Estado: Pendiente
+Costo total: 0
+------------------------------------------------------------
+
+Resumen general:
+Total reservas procesadas: 1
+Total reservas canceladas: 0
+Total reservas pendientes: 1
+Total reservas registradas: 2
+
+Fin del reporte de reservas.

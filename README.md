@@ -33,4 +33,4 @@ El sistema no utiliza bases de datos. Toda la informacion se gestiona mediante o
 Desde la carpeta principal del proyecto ejecutar:
 
 ```bash
-python main.py
+python main-py
